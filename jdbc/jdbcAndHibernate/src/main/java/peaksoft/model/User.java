@@ -1,10 +1,14 @@
 package peaksoft.model;
 
-import javax.persistence.*;
-
+import jakarta.persistence.*;
+@Entity
 @Table
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_gen")
+    @SequenceGenerator(name = "user_gen",
+            sequenceName = "user_seq",
+            allocationSize = 1)
     private Long id;
 
     @Column
@@ -57,4 +61,13 @@ public class User {
         this.age = age;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }
